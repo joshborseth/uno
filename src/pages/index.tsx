@@ -1,11 +1,17 @@
 import { type NextPage } from "next";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 const Home: NextPage = () => {
+  const { data: session } = useSession();
   return (
     <>
       <div>
-        <button onClick={() => void signIn("discord")}>signin</button>
+        {!session ? (
+          <button onClick={() => void signIn("discord")}>signin</button>
+        ) : (
+          <button onClick={() => void signOut()}>signout</button>
+        )}
       </div>
+      <div>{session?.user.hasPostedToday ? "true" : "false"}</div>
     </>
   );
 };
