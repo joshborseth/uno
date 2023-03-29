@@ -11,7 +11,6 @@ const Home: NextPage = () => {
           <button onClick={() => void signOut()}>signout</button>
         )}
       </div>
-      <div>{session?.user.hasPostedToday ? "true" : "false"}</div>
     </>
   );
 };
